@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Daily Executive Briefing Agent — VRMA Round Table</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0e2638;
+    --teal:#1f8a8a;
+    --teal-soft:#e6f4f4;
+    --paper:#fbf9f5;
+    --ink:#15202b;
+    --muted:#5a6b78;
+    --gold:#c89b3c;
+    --line:#dfd9cf;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--paper);color:var(--ink);font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+
+  header{background:linear-gradient(135deg,var(--navy) 0%,#173651 100%);color:#fff;padding:36px 48px 32px}
+  header .row{display:grid;grid-template-columns:1fr 300px;gap:36px;align-items:center;max-width:1280px;margin:0 auto}
+  header .eyebrow{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#a8c0d3;margin:0 0 8px}
+  header h1{font-family:"Oswald";font-weight:700;font-size:46px;letter-spacing:.5px;margin:0 0 8px;line-height:1.05}
+  header .sub{font-size:17px;color:#cfdce6;margin:0 0 12px;max-width:680px}
+  header .meta{font-size:13px;color:#8fa6b8}
+  header .meta b{color:#e2eaf2;font-weight:600}
+  header .qr-card{background:#fff;border-radius:14px;padding:18px 18px 12px;text-align:center;color:var(--ink);box-shadow:0 6px 24px rgba(0,0,0,.25)}
+  header .qr-card .qr-label{font-family:"Oswald";font-size:14px;letter-spacing:.18em;color:var(--navy);margin:0 0 10px}
+  header .qr-card #qr-master{width:240px;height:240px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+  header .qr-card .qr-url{font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:.04em}
+
+  main{max-width:1280px;margin:0 auto;padding:30px 36px 70px}
+
+  .callout{background:#fff8e7;border-left:6px solid var(--gold);padding:14px 22px;border-radius:6px;margin:18px 0 32px;font-size:15px}
+  .callout b{color:#7a5a14}
+
+  h2.section{font-family:"Oswald";font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);font-size:15px;margin:36px 0 16px;border-bottom:2px solid var(--navy);padding-bottom:6px}
+
+  .setup{background:#fff;border:1px solid var(--line);border-radius:14px;padding:28px 32px;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .step{display:flex;flex-direction:column;gap:8px}
+  .step .num{font-family:"Oswald";font-size:42px;color:var(--teal);line-height:1;margin-bottom:2px}
+  .step h4{font-family:"Oswald";color:var(--navy);margin:0 0 4px;font-size:17px;letter-spacing:.4px;text-transform:uppercase}
+  .step p{margin:0;font-size:13.5px;color:var(--ink);line-height:1.5}
+  .step p b{color:var(--navy)}
+
+  .prompt-card{background:linear-gradient(135deg,#173651 0%,#0e2638 100%);color:#fff;border-radius:18px;padding:30px 34px;margin-top:32px}
+  .prompt-card .hbadge{display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .prompt-card h2{font-family:"Oswald";margin:0 0 8px;font-size:30px;letter-spacing:.5px;line-height:1.1}
+  .prompt-card p.lead{margin:0 0 18px;color:#cfdce6;font-size:15.5px;max-width:880px}
+  .prompt-card .codewrap{position:relative}
+  .prompt-card pre{background:#0a1a26;border:1px solid #244055;color:#e2eaf2;border-radius:12px;padding:20px 22px;font-size:13px;line-height:1.6;max-height:520px;overflow:auto;margin:0;font-family:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;white-space:pre-wrap}
+  .prompt-card .copy-btn{position:absolute;top:14px;right:14px;background:var(--teal);color:#fff;border:none;font-weight:600;font-size:13px;letter-spacing:.06em;padding:10px 18px;border-radius:8px;cursor:pointer;text-transform:uppercase}
+  .prompt-card .copy-btn:hover{background:#176f6f}
+
+  .tips-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:22px;margin-top:8px}
+  .tip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px;display:flex;flex-direction:column;gap:8px}
+  .tip .tip-tag{font-family:"Oswald";display:inline-block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:4px 10px;border-radius:999px;background:var(--teal-soft);color:var(--teal);align-self:flex-start;font-weight:600}
+  .tip h3{font-family:"Oswald";color:var(--navy);margin:4px 0 4px;font-size:21px;letter-spacing:.4px;line-height:1.2}
+  .tip p{margin:0;font-size:14px;color:var(--ink);line-height:1.55}
+  .tip p.use{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-top:6px}
+  .tip ul{margin:4px 0 0;padding-left:18px;font-size:13.5px;line-height:1.55}
+  .tip ul li{margin-bottom:5px}
+  .tip ul li b{color:var(--navy)}
+  .tip .works{font-size:11px;letter-spacing:.08em;color:var(--muted);margin-top:auto;padding-top:10px;border-top:1px dashed var(--line)}
+  .tip .works b{color:var(--navy)}
+
+  .explainer{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+  .explainer .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 26px}
+  .explainer h3{font-family:"Oswald";letter-spacing:.5px;margin:0 0 4px;font-size:22px;color:var(--navy)}
+  .explainer .tag{display:inline-block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;padding:3px 10px;border-radius:999px;margin-bottom:10px}
+  .tag.gpt{background:#10a37f1a;color:#0d6e58}
+  .tag.cowork{background:#cc785c1a;color:#a8553d}
+  .explainer ul{padding-left:18px;margin:8px 0 0}
+  .explainer li{margin-bottom:4px;font-size:14.5px}
+  .explainer .verdict{margin-top:12px;font-size:14px;color:var(--muted);font-style:italic}
+
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:36px 20px 10px}
+  footer b{color:var(--navy)}
+
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:14px 26px;border-radius:999px;font-size:15px;letter-spacing:.04em;opacity:0;transition:all .25s ease;pointer-events:none;z-index:1000}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:980px){
+    header .row{grid-template-columns:1fr;text-align:center}
+    header .qr-card{max-width:300px;margin:0 auto}
+    header h1{font-size:34px}
+    .setup{grid-template-columns:1fr 1fr}
+    .explainer{grid-template-columns:1fr}
+    main{padding:24px 18px 50px}
+    .prompt-card{padding:22px 18px}
+    .prompt-card .copy-btn{position:static;display:block;margin-bottom:12px;width:100%}
+  }
+  @media print{
+    body{background:#fff}
+    .copy-btn{display:none}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="row">
+    <div>
+      <p class="eyebrow">VRMA Executive Summit · Round Table · May 13, 2026</p>
+      <h1>The Daily Executive Briefing Agent</h1>
+      <p class="sub">A ChatGPT Workspace Agent built for a VR C-suite operator. Reads Gmail, Google Calendar, and Slack each morning. Hands you the one briefing you actually want with coffee.</p>
+      <p class="meta">Moderated by <b>Alex Zemianek</b> · JZ Vacation Rentals · Fractional COO Advisory</p>
+    </div>
+    <div class="qr-card">
+      <div class="qr-label">SCAN TO OPEN ON YOUR PHONE</div>
+      <div id="qr-master"></div>
+      <div class="qr-url">jzcommandbot.github.io/vrma-prompts</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<div class="callout">
+  <b>Heads up:</b> ChatGPT Workspace Agents went paid <b>May 6, 2026</b> — credit-based pricing now active on Business, Enterprise, Edu, and Teams plans. Build them in <b>Sidebar &rarr; Agents</b>.
+</div>
+
+<h2 class="section">Setup · 5 Steps from Prompt to Live Agent</h2>
+<div class="setup">
+  <div class="step">
+    <span class="num">1</span>
+    <h4>Open Agents</h4>
+    <p>In ChatGPT, click <b>Sidebar &rarr; Agents &rarr; Create</b>. The builder opens as a chat.</p>
+  </div>
+  <div class="step">
+    <span class="num">2</span>
+    <h4>Paste &amp; Refine</h4>
+    <p>Paste the prompt below as the agent's job description. The builder will translate it into a workflow with defined steps. Answer its clarifying questions.</p>
+  </div>
+  <div class="step">
+    <span class="num">3</span>
+    <h4>Connect Tools</h4>
+    <p>Enable <b>Gmail, Google Calendar, and Slack</b> connectors when prompted. OAuth into each one with your work account.</p>
+  </div>
+  <div class="step">
+    <span class="num">4</span>
+    <h4>Schedule + Test</h4>
+    <p>Set the agent to run <b>weekdays at 6:30am local</b>. Run it manually once to verify the output looks like the briefing you'd actually want.</p>
+  </div>
+  <div class="step">
+    <span class="num">5</span>
+    <h4>Publish &amp; Share</h4>
+    <p>Publish to your workspace. Share with your COO / Chief of Staff if you have one. Iterate — agents are versioned.</p>
+  </div>
+</div>
+
+<h2 class="section">The Prompt · Paste This as the Job Description</h2>
+<div class="prompt-card">
+  <span class="hbadge">Reads · Gmail · Google Calendar · Slack &nbsp;|&nbsp; Runs · Daily 6:30am</span>
+  <h2>Chief of Staff agent for a VR C-suite operator</h2>
+  <p class="lead">Direct, peer-to-peer voice. Calendar context. Top 3 asks. What's slipping. What to watch. Max 350 words. No filler.</p>
+  <div class="codewrap">
+    <button class="copy-btn" data-target="prompt-main">Copy</button>
+    <pre id="prompt-main">You are the Chief of Staff agent for a vacation rental executive (CEO / COO of a multi-property management company). Your job: produce ONE daily briefing they read with their first coffee.
+
+You have read access to: Gmail, Google Calendar, and Slack (selected channels + DMs).
+
+Every weekday at 6:30am local time, scan the last 24 hours of activity across all three sources. Produce a briefing with EXACTLY these sections, in this order, with these labels:
+
+### TODAY'S CALENDAR
+For each meeting today: time, attendees, one-line context I should walk in with (pulled from the most recent thread with that person). If you have no thread, write "no prior context — meeting purpose unclear." Never invent context. Max 3 lines per event.
+
+### TOP 3 THINGS THAT NEED ME TODAY
+Pulled from Gmail + Slack. Rank by: (1) external stakeholder waiting on a reply, (2) team blocked on my decision, (3) money or legal exposure. One line each. Include sender name and a clickable reference.
+
+### SLIPPING
+ONE thing where I made a commitment in the last 7 days and have not delivered. Quote the commitment. If nothing is slipping, say "Nothing slipping — last commitment closed [date]."
+
+### WATCH OUT
+ONE risk that hasn't escalated yet but is trending wrong (a thread cooling, a vendor going quiet, a metric drifting in Slack). If nothing, say "No early-warning signals today."
+
+### NICE TO KNOW
+Up to 3 bullets. Closed loops, light wins, things to nod at but not act on.
+
+RULES:
+- Never invent. If data is missing, say so.
+- No marketing language ("exciting," "great news"). Plain English.
+- Owner names, vendor names, dollar amounts: exact, never paraphrased.
+- If an email or Slack thread has gone unread more than 2 days, surface it in SLIPPING.
+- Max 350 words total. If you go over, cut NICE TO KNOW first.
+- Calendar events with no attendees besides me: label FOCUS BLOCK, don't prep them.
+- Conflicting info across sources (email says X, Slack says Y): surface the conflict in WATCH OUT.
+
+Voice: direct, peer-to-peer. No praise, no apologies, no filler. Sharp chief of staff hands me facts, not feelings.</pre>
+  </div>
+</div>
+
+<h2 class="section">The Two Tools Everyone Confuses</h2>
+<div class="explainer">
+  <div class="box">
+    <span class="tag gpt">ChatGPT Workspace Agents</span>
+    <h3>Cloud agents for repeatable team work</h3>
+    <ul>
+      <li>Lives in <b>chatgpt.com</b>, sidebar &rarr; Agents</li>
+      <li>Runs in a <b>cloud VM</b> — no access to your local files</li>
+      <li>Best for: <b>web-native workflows</b> a whole team uses</li>
+      <li>Shareable: build once, the team uses it</li>
+      <li>Plans: Business, Enterprise, Edu, Teachers, <b>Teams</b></li>
+    </ul>
+    <p class="verdict">Pick when the work lives on the web and the team needs the same answer the same way.</p>
+  </div>
+  <div class="box">
+    <span class="tag cowork">Claude Cowork</span>
+    <h3>Desktop agent that touches your files</h3>
+    <ul>
+      <li>Lives in the <b>Claude desktop app</b></li>
+      <li>Runs in a <b>sandboxed Linux VM on your machine</b> with scoped local file access</li>
+      <li>Creates <b>real .docx / .xlsx / .pptx / .pdf</b> on your machine</li>
+      <li>Best for: <b>multi-step work that has to land in a file</b></li>
+      <li>Different product, different company — not a ChatGPT feature</li>
+    </ul>
+    <p class="verdict">Pick when the deliverable is a file you'd otherwise build by hand.</p>
+  </div>
+</div>
+
+<footer>
+  Moderated by <b>Alex Zemianek</b> · alex@jzvacationrentals.com · Share this URL: jzcommandbot.github.io/vrma-prompts
+</footer>
+
+</main>
+
+<div class="toast" id="toast">Copied</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+  const PAGE_URL = "https://jzcommandbot.github.io/vrma-prompts/";
+
+  function renderMasterQR(){
+    const el = document.getElementById("qr-master");
+    if(!el) return;
+    if(typeof QRCode === "undefined"){
+      el.innerHTML = '<div style="font-size:11px;color:#888;text-align:center;padding:10px">QR offline</div>';
+      return;
+    }
+    new QRCode(el, {
+      text: PAGE_URL,
+      width: 240,
+      height: 240,
+      colorDark: "#0e2638",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  }
+
+  function init(){
+    renderMasterQR();
+
+    document.querySelectorAll(".copy-btn").forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const id = btn.dataset.target;
+        const text = document.getElementById(id).textContent;
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("Copied — paste into ChatGPT");
+        } catch(e) {
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          showToast("Copied");
+        }
+      });
+    });
+  }
+
+  function showToast(msg){
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(()=>t.classList.remove("show"), 2200);
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+</script>
+
+</body>
+</html>
